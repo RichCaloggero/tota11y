@@ -11,6 +11,7 @@ let LabelsPlugin = require("./labels");
 let LandmarksPlugin = require("./landmarks");
 let LinkTextPlugin = require("./link-text");
 let A11yTextWand = require("./a11y-text-wand");
+let TabindexPlugin = require("./tabindex");
 
 module.exports = {
     default: [
@@ -20,9 +21,10 @@ module.exports = {
         new LabelsPlugin(),
         new AltTextPlugin(),
         new LandmarksPlugin(),
-    ],
+    ,],
 
     experimental: [
-        new A11yTextWand(),
+new TabindexPlugin(),
+new A11yTextWand(),
     ],
 };

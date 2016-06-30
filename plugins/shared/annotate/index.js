@@ -42,7 +42,7 @@ module.exports = (namespace) => {
         // Create a position an annotation relative to its offset parent.
         // We also store the element its annotation so we can reposition when
         // the window resizes.
-        let $annotation = $("<div>")
+        let $annotation = $('<div role="region" aria-label="a11y error">')
             .addClass("tota11y")    // tota11y base class for styling
             .addClass(ANNOTATION_CLASS)
             .addClass(className)

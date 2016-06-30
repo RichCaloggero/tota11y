@@ -188,7 +188,7 @@ class InfoPanel {
         let hasContent = false;
 
         this.$el = (
-            <div className="tota11y tota11y-info" tabindex="-1">
+            <div className="tota11y tota11y-info" tabindex="-1" aria-label="Info Panel" role="region">
                 <header className="tota11y-info-title">
                     {this.plugin.getTitle()}
                     <span className="tota11y-info-controls">
@@ -327,7 +327,7 @@ class InfoPanel {
             $errorsTab = $activeTab = this._addTab("Errors", $errors);
 
             // Add a small badge next to the tab title
-            let $badge = $("<div>")
+            let $badge = $('<div role="alert">')
                 .addClass("tota11y-info-error-count")
                 .text(this.errors.length);
 

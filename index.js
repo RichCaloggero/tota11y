@@ -57,7 +57,7 @@ class Toolbar {
             $experimentalPlugins = (
                 <li>
                     <div className="tota11y-plugins-separator">
-                        Experimental
+                        <h2>Experimental</h2>
                     </div>
                     <ul>
                       {
@@ -73,22 +73,31 @@ class Toolbar {
         }
 
         let $plugins = (
-            <ul className="tota11y-plugins">
+            <div>
+<h2>Plugins</h2>
+<ul className="tota11y-plugins">
                 {$defaultPlugins}
                 {$experimentalPlugins}
             </ul>
-        );
+        </div>
+);
 
         let handleToggleClick = (e) => {
-            e.preventDefault();
+            var $trigger = $(e.target);
+e.preventDefault();
             e.stopPropagation();
             $toolbar.toggleClass("tota11y-expanded");
-            $toolbar.attr("aria-expanded", $toolbar.is(".tota11y-expanded"));
-        };
+            $trigger.attr("aria-expanded", $toolbar.is(".tota11y-expanded")? "true" : "false");
+
+if ($toolbar.is(".tota11y-expanded")) {
+$toolbar.find ("a,button,input").first().focus();
+} // if
+        }; // handleToggleClick
 
         let $toggle = (
             <button aria-controls="tota11y-toolbar"
-                    className="tota11y-toolbar-toggle"
+                    aria-expanded="false"
+className="tota11y-toolbar-toggle"
                     onClick={handleToggleClick}
                     aria-label="[tota11y] Toggle menu">
                 <div aria-hidden="true" className="tota11y-toolbar-logo">
@@ -97,16 +106,33 @@ class Toolbar {
             </button>
         );
 
+let handleToolbarKeydown = (e) => {
+var key = e.keyCode;
+//e.preventDefault ();
+e.stopPropagation();
+e.stopImmediatePropagation();
+//alert ("keydown handler");
+
+if (key == 27 && $toolbar.is (".tota11y-expanded")) {
+$toggle.trigger ("click").focus();
+return false;
+} // if
+
+return true;
+}; // handleToolbarKeydown
+
         $toolbar = (
-            <div id="tota11y-toolbar" className="tota11y tota11y-toolbar"
-                 role="region"
-                 aria-expanded="false">
+    <div id="tota11y-toolbar" 
+className="tota11y tota11y-toolbar"
+ role="region">
                 <div className="tota11y-toolbar-body">
                     {$plugins}
                 </div>
                 {$toggle}
             </div>
         );
+
+$toolbar.on ("keydown", handleToolbarKeydown);
 
         $el.append($toolbar);
     }

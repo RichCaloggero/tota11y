@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<meta charset="utf-8">
+<title>tota11y bookmarklet</title>
+</head>
+<body>
+<h1>tota11y bookmarklet</h1>
+
+<p>Drag the following link to your bookmarks toolbar, or via keyboard, right click (via context menu key or shift+f10) and choose "bookmark link" from the menu.
+Once this is done, visit the page you want to test, then click on the bookmark you just added from toolbar or from bookmarks menu.
+</p><p>
+<a href=
+"javascript:(function()%20{var%20s%20=%20document.createElement('script');%20s.src='https://www.mit.edu/~rjc/aria/tota11y-demo/tota11y.min.js';%20document.getElementsByTagName('head')[0].appendChild(s);})();"
+>add tota11y to current page</a>
+</p>
+
+<script>
+function addScriptElement () {
+var s = document.createScriptNode();
+s.src = "tota11y.min.js";
+document.getElementsByTagName("head")[0].appendChild (s);
+} // addScript
+</script>
+
+</body>
+</html>
